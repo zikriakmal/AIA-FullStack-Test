@@ -7,6 +7,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const { APP_NAME, APP_PORT, APP_URL } = require('./config/config')
 const publicFeedRoute = require('./routes/publicFeedRoutes')
