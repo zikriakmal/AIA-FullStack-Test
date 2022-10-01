@@ -1,0 +1,12 @@
+version: "3"
+services:
+  aia-app:
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 8000:8000
+    command: [ "node", "/app/backend/app.js" ]
