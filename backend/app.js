@@ -6,16 +6,24 @@
  */
 
 const express = require('express');
+const cors = require('cors');
+
 const { APP_NAME, APP_PORT, APP_URL } = require('./config/config')
 const publicFeedRoute = require('./routes/publicFeedRoutes')
 const app = express();
 
+app.use(cors({ origin: '*' }))
+app.use(express.static("public"));
+app.use("/api/v1/public-feeds", publicFeedRoute)
+
+
+/**
+ * for react frontend client
+ */
 app.get("/", (req, res, next) =>
 {
-    res.status(200).send(`<h1>API ${APP_NAME}</h1>`)
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 })
-
-app.use("/api/v1/public-feeds", publicFeedRoute)
 
 app.listen(APP_PORT, () => console.log(`
 ============================

@@ -6,20 +6,6 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('/GET Root', () =>
-{
-    it('it should GET root of api', (done) =>
-    {
-        chai.request(server)
-            .get('/')
-            .end((err, res) =>
-            {
-                res.should.have.status(200);
-                res.text.should.be.equal(`<h1>API ${process.env.APP_NAME}</h1>`);
-                done();
-            });
-    });
-});
 
 
 describe('/GET Public feeds', () =>

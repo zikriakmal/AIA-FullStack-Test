@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) =>
 {
-    const result = await getFeeds(req);
+    const result = await getFeeds(req.query);
 
     if (result.status === "success") {
         res.status(200).json(successResponse({
