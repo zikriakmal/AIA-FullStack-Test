@@ -9,4 +9,4 @@ services:
       - NODE_ENV=development
     ports:
       - 8000:8000
-    command: [ "node", "/app/backend/app.js" ]
+    command: [ "node", "app.js" ]

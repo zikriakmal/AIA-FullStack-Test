@@ -19,8 +19,9 @@ const Index = () =>
         setDialog(false)
     }
 
-    const handleSearchTag = async () =>
+    const handleSearchTag = async (e) =>
     {
+        e.preventDefault();
         const newData = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/public-feeds?tag=${tag}`)
         setData(newData.data.data);
     }
@@ -48,9 +49,11 @@ const Index = () =>
 
                     <p style={{ fontWeight: '800', fontSize: '24px' }}>Discover your best sources from any topic</p>
                     <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-                        <OutlinedInput fullWidth value={tag} placeholder={"Search by Tags"} onChange={(e) => { setTag(e.target.value) }}
-                            startAdornment={<InputAdornment position="start"><SearchIcon /></InputAdornment>} endAdornment={<Button variant={"contained"} onClick={handleSearchTag} disabled={tag === ""}>Search</Button>}>
-                        </OutlinedInput>
+                        <form onSubmit={handleSearchTag}>
+                            <OutlinedInput type fullWidth value={tag} placeholder={"Search by Tags"} onChange={(e) => { setTag(e.target.value) }}
+                                startAdornment={<InputAdornment position="start"><SearchIcon /></InputAdornment>} endAdornment={<Button variant={"contained"} type={"submit"} disabled={tag === ""}>Search</Button>}>
+                            </OutlinedInput>
+                        </form>
                     </div>
                     {data.length === 0 ?
                         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
