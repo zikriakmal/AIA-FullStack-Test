@@ -19,6 +19,9 @@ const app = express();
  * 
  * for react frontend client
  */
+
+app.use(cors({ origin: '*' }))
+app.use("/api/v1/public-feeds", publicFeedRoute)
 app.use(express.static('public'))
 
 app.get("/", (req, res, next) =>
@@ -26,8 +29,6 @@ app.get("/", (req, res, next) =>
     res.sendFile(path.join(__dirname, "public/index.html"));
 })
 
-app.use(cors({ origin: '*' }))
-app.use("/api/v1/public-feeds", publicFeedRoute)
 app.listen(APP_PORT, () => console.log(`
 ============================
 ${APP_NAME} APP Started
